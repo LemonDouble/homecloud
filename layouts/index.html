@@ -332,47 +332,46 @@
     </div>
 </section>
 <script>
+    // Terminal typing effect
+    const commands = [
+        "homecloud start --with-me",
+        "homecloud deploy redis",
+        "homecloud bucket create",
+        "homecloud backup rds --name homecloud-db",
+    ];
 
-        // Terminal typing effect
-        const commands = [
-            "homecloud start --with-me",
-            "homecloud deploy redis",
-            "homecloud bucket create",
-            "homecloud backup rds --name homecloud-db",
-        ];
+    let currentCommand = 0;
+    let charIndex = 0;
+    let isDeleting = false;
+    let typingSpeed = 100;
 
-        let currentCommand = 0;
-        let charIndex = 0;
-        let isDeleting = false;
-        let typingSpeed = 100;
+    function typeCommand() {
+        const commandElement = document.getElementById('typed-command');
+        const fullCommand = commands[currentCommand];
 
-        function typeCommand() {
-            const commandElement = document.getElementById('typed-command');
-            const fullCommand = commands[currentCommand];
-
-            if (isDeleting) {
-                commandElement.textContent = fullCommand.substring(0, charIndex - 1);
-                charIndex--;
-                typingSpeed = 50;
-            } else {
-                commandElement.textContent = fullCommand.substring(0, charIndex + 1);
-                charIndex++;
-                typingSpeed = 100;
-            }
-
-            if (!isDeleting && charIndex === fullCommand.length) {
-                isDeleting = true;
-                typingSpeed = 1500; // Pause at end of command
-            } else if (isDeleting && charIndex === 0) {
-                isDeleting = false;
-                currentCommand = (currentCommand + 1) % commands.length;
-                typingSpeed = 500; // Pause before typing next command
-            }
-
-            setTimeout(typeCommand, typingSpeed);
+        if (isDeleting) {
+            commandElement.textContent = fullCommand.substring(0, charIndex - 1);
+            charIndex--;
+            typingSpeed = 50;
+        } else {
+            commandElement.textContent = fullCommand.substring(0, charIndex + 1);
+            charIndex++;
+            typingSpeed = 100;
         }
 
-        // Start the typing effect
-        setTimeout(typeCommand, 1000);
-    </script>
+        if (!isDeleting && charIndex === fullCommand.length) {
+            isDeleting = true;
+            typingSpeed = 1500; // Pause at end of command
+        } else if (isDeleting && charIndex === 0) {
+            isDeleting = false;
+            currentCommand = (currentCommand + 1) % commands.length;
+            typingSpeed = 500; // Pause before typing next command
+        }
+
+        setTimeout(typeCommand, typingSpeed);
+    }
+
+    // Start the typing effect
+    setTimeout(typeCommand, 1000);
+</script>
 {{ end }}
