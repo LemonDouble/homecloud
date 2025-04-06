@@ -14,7 +14,7 @@ other = "다음"
 other = "이전"
 
 [edit_page]
-other = "Edit this page on"
+other = "Github에서 수정 요청하기"
 
 [get_started]
 other = "Example Guide"
