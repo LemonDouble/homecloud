@@ -1,0 +1,60 @@
+[404_text]
+other = "찾고 있던 페이지가 존재하지 않거나, 어디론가 이동된 것 같아요."
+
+[404_title]
+other = "해당 페이지를 찾을 수 없어요 😔"
+
+[browse]
+other = "Browse"
+
+[chapter_next]
+other = "다음"
+
+[chapter_previous]
+other = "이전"
+
+[edit_page]
+other = "Edit this page on"
+
+[get_started]
+other = "Example Guide"
+
+[home]
+other = "Home"
+
+[in]
+other = "in"
+
+[by]
+other = "by"
+
+[last_updated]
+other = "Last updated on"
+
+[minute]
+one = "분"
+other = "분"
+
+[on_this_page]
+other = "On this page"
+
+[reading_time]
+other = "Estimated reading time"
+
+[search_loading]
+other = "Loading search index…"
+
+[search_no_recent]
+other = "No recent searches"
+
+[search_no_results]
+other = "No results"
+
+[search_placeholder]
+other = "Search"
+
+[search_title]
+other = "검색"
+
+[video_unsupported]
+other = "Your browser doesn't support embedded videos, but don't worry, you can <a href=\"{{ .RelPermalink }}\">download it</a> and watch it with your favorite video player!"

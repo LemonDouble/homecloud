@@ -1,4 +1,4 @@
-title = "My Docs"
+title = "HomeCloud"
 baseurl = "http://localhost/"
 canonifyURLs = false
 disableAliases = true
@@ -7,14 +7,14 @@ disableHugoGeneratorInject = true
 enableEmoji = true
 enableGitInfo = false
 enableRobotsTXT = true
-languageCode = "en-US"
+languageCode = "ko-KR"
 pagerSize = 10
 rssLimit = 10
 summarylength = 20 # 70 (default)
 
 # Multilingual
-defaultContentLanguage = "en"
-disableLanguages = ["de", "nl"]
+defaultContentLanguage = "ko"
+disableLanguages = []
 defaultContentLanguageInSubdir = false
 
 copyRight = "Copyright (c) 2020-2024 Thulite"

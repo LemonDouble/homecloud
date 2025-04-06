@@ -1,59 +1,378 @@
 {{ define "main" }}
-<section class="section container-fluid mt-n3 pb-3">
-  <div class="row justify-content-center">
-    <div class="col-lg-12 text-center">
-      <h1>{{ .Title }}</h1>
-    </div>
-    <div class="col-lg-9 col-xl-8 text-center">
-      <p class="lead">{{ .Params.lead | safeHTML }}</p>
-      <a class="btn btn-primary btn-cta rounded-pill btn-lg my-3" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}guides/example-guide/" role="button">{{ i18n "get_started" }}</a>
-      {{ .Content }}
-    </div>
-  </div>
-</section>
-{{ end }}
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+    @import url('https://fonts.googleapis.com/css2?family=Ubuntu+Mono:wght@400;700&family=Ubuntu:wght@300;400;500;700&display=swap');
 
-{{ define "sidebar-prefooter" }}
-  {{ if site.Params.doks.backgroundDots -}}
-  <div class="d-flex justify-content-start">
-    <div class="bg-dots"></div>
-  </div>
-  {{ end -}}
-  {{ if eq $.Site.Language.LanguageName "English" }}
-  <section class="section section-md section-features">
-    <div class="container">
-      <div class="row justify-content-center text-center">
-        <div class="col-lg-5">
-          <h2 class="h4">Update content</h2>
-          <p>Edit <code>content/_index.md</code> to see this page change.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Add new content</h2>
-          <p>Add Markdown files to <code>content</code> to create new pages.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Configure your site</h2>
-          <p>Edit your config in <code>config/_default/params.toml</code>.</p>
-        </div>
-        <div class="col-lg-5">
-          <h2 class="h4">Read the docs</h2>
-          <p>Learn more in the <a href="https://getdoks.org/">Docs</a>.</p>
-        </div>
-      </div>
-    </div>
-  </section>
-  {{ end }}
-{{ end }}
+    .terminal-header {
+        background: linear-gradient(0deg, #3C1E2E, #4A2A3C);
+        border-top-left-radius: 0.5rem;
+        border-top-right-radius: 0.5rem;
+    }
 
-{{ define "sidebar-footer" }}
-{{ if site.Params.doks.sectionFooter -}}
-<section class="section section-md container-fluid bg-light">
-  <div class="row justify-content-center text-center">
-    <div class="col-lg-7">
-      <h2 class="mt-2">Start building with Doks today</h2>
-      <a class="btn btn-primary rounded-pill px-4 my-2" href="/docs/{{ if site.Params.doks.docsVersioning }}{{ site.Params.doks.docsVersion }}/{{ end }}prologue/introduction/" role="button">{{ i18n "get-started" }}</a>
+    .terminal-body {
+        background-color: #300A24;
+        border-bottom-left-radius: 0.5rem;
+        border-bottom-right-radius: 0.5rem;
+    }
+
+    .terminal-button {
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 8px;
+    }
+
+    .close { background-color: #FF5F56; }
+    .minimize { background-color: #FFBD2E; }
+    .maximize { background-color: #27C93F; }
+
+    .command-line::before {
+        content: "user@homecloud:~$";
+        color: #34E27A;
+        margin-right: 10px;
+    }
+
+    .typewriter {
+        border-right: 2px solid #34E27A;
+        animation: blink 1s step-end infinite;
+    }
+
+    @keyframes blink {
+        from, to { border-color: transparent; }
+        50% { border-color: #34E27A; }
+    }
+
+    .service-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    [data-bs-theme="dark"] .service-card {
+        background: linear-gradient(145deg, #1e293b, #0f172a);
+    }
+</style>
+
+<!-- Hero Section -->
+<section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="md:flex md:items-center md:justify-between">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h1 class="text-4xl md:text-5xl font-bold mb-6">Build Your Own AWS at Home</h1>
+                <p class="text-xl mb-8 opacity-90">
+                    Recreate cloud services using Raspberry Pi and old desktop computers.
+                    High-availability, open-source, and completely under your control.
+                </p>
+                <div class="flex flex-wrap gap-4">
+                    <a href="/docs/guides/example-guide" class="px-6 py-3 text-black rounded-lg font-medium bg-white border-2 hover:bg-gray-100 transition">
+                        <div class="flex flex-row gap-2">
+                            <div>Read Docs</div>
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-external-link"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 6h-6a2 2 0 0 0 -2 2v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-6" /><path d="M11 13l9 -9" /><path d="M15 4h5v5" /></svg>
+                        </div>
+                    </a>
+                    <!-- GitOps 공개로 하면 열어둘 예정
+                    <a href="https://github.com/" target="_blank" class="px-6 py-3 bg-transparent border-2 border-white text-white rounded-lg font-medium hover:bg-white hover:text-ubuntu-orange transition">
+                        <i class="fab fa-github mr-2"></i> View on GitHub
+                    </a>
+                    -->
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <div class="absolute -top-6 -left-6 w-32 h-32 bg-purple-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob"></div>
+                    <div class="absolute -bottom-8 -right-8 w-32 h-32 bg-pink-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-2000"></div>
+                    <div class="absolute top-20 left-20 w-32 h-32 bg-blue-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-blob animation-delay-4000"></div>
+                    <div class="relative bg-gray-800 rounded-xl shadow-2xl overflow-hidden">
+                        <div class="p-4 terminal-header flex items-center">
+                            <div class="terminal-button close"></div>
+                            <div class="terminal-button minimize"></div>
+                            <div class="terminal-button maximize"></div>
+                            <div class="ml-2 text-sm text-gray-300">user@homecloud:~</div>
+                        </div>
+                        <div class="p-4 font-mono terminal-body text-sm bg-[#300924] text-white">
+                            <div class="mb-2">Type 'help' to see available commands</div>
+                            <div class="mb-4">
+                                <div class="command-line flex items-center">
+                                    <span>homecloud help</span>
+                                </div>
+                                <div class="my-2 ml-8">
+                                    <div>EKS: <span class="text-green-400">Running (K3S v1.32.3)</span></div>
+                                    <div>S3: <span class="text-green-400">Running (MinIO v5.4.0)</span></div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="command-line flex items-center">
+                                    <span>homecloud deploy rds</span>
+                                </div>
+                                <div class="my-2 ml-8">
+                                    <div>Deploying RDS service with CloudNativePG...</div>
+                                    <div>Creating PostgreSQL cluster 'homecloud-db'</div>
+                                    <div class="text-green-400">✔ Cluster created successfully</div>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="command-line flex items-center">
+                                    <span id="typed-command" class="typewriter"></span>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </div>
 </section>
-{{ end -}}
+
+<!-- Services Section -->
+<section id="services" class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-16">
+            <h2 class="text-3xl font-bold text-gray-900 mb-4">Planned Services</h2>
+            <p class="text-xl max-w-3xl mx-auto">
+                Recreating AWS services one by one using open-source alternatives that you can run at home.
+            </p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- S3 Card -->
+            <div class="service-card rounded-xl shadow-lg p-6 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#C72E49] flex items-center justify-center mr-4">
+                        <img height="32" width="32" src="https://cdn.simpleicons.org/minio/white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">S3 Storage -> MinIO</h3>
+                </div>
+                <p class="mb-4">
+                    Object storage service implemented using MinIO, providing S3-compatible API for your applications.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-[#C72E49] text-white rounded-full text-xs">MinIO</span>
+                    <span class="px-3 py-1 bg-[#C72E49] text-white rounded-full text-xs">S3-compatible</span>
+                    <span class="px-3 py-1 bg-[#C72E49] text-white rounded-full text-xs">Multi-node</span>
+                </div>
+            </div>
+
+            <!-- EKS Card -->
+            <div class="service-card rounded-xl shadow-lg p-6 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#FFC61C] flex items-center justify-center mr-4">
+                        <img height="32" width="32" src="https://cdn.simpleicons.org/k3s/white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Kubernetes (EKS) -> k3s</h3>
+                </div>
+                <p class="mb-4">
+                    Managed Kubernetes service using K3S, a lightweight Kubernetes distribution perfect for edge and home use.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-[#FFC61C] text-black rounded-full text-xs">K3S</span>
+                    <span class="px-3 py-1 bg-[#FFC61C] text-black rounded-full text-xs">Lightweight</span>
+                    <span class="px-3 py-1 bg-[#FFC61C] text-black rounded-full text-xs">ARM64 support</span>
+                </div>
+            </div>
+
+            <!-- RDS Card -->
+            <div class="service-card rounded-xl shadow-lg p-6 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#527FFF] flex items-center justify-center mr-4">
+                        <img height="32" width="32" src="https://cdn.simpleicons.org/amazonrds/white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">RDS -> CloudNativePG</h3>
+                </div>
+                <p class="mb-4">
+                    Managed PostgreSQL service using CloudNativePG, with automated backups, failover, and scaling.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-[#527FFF] text-white rounded-full text-xs">PostgreSQL</span>
+                    <span class="px-3 py-1 bg-[#527FFF] text-white rounded-full text-xs">HA</span>
+                    <span class="px-3 py-1 bg-[#527FFF] text-white rounded-full text-xs">Backups</span>
+                </div>
+            </div>
+
+            <!-- ElasticCache Card -->
+            <div class="service-card rounded-xl shadow-lg p-6 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#C925D1] flex items-center justify-center mr-4">
+                        <img height="32" width="32" src="https://cdn.simpleicons.org/amazonelasticache/white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">ElasticCache -> Bitnami Redis</h3>
+                </div>
+                <p class="mb-4">
+                    Redis-based caching service using Bitnami's Redis Helm chart, with clustering and persistence options.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-[#C925D1] text-white rounded-full text-xs">Redis</span>
+                    <span class="px-3 py-1 bg-[#C925D1] text-white rounded-full text-xs">Bitnami</span>
+                    <span class="px-3 py-1 bg-[#C925D1] text-white rounded-full text-xs">Cluster</span>
+                </div>
+            </div>
+
+            <!-- SecretsManager Card -->
+            <div class="service-card rounded-xl shadow-lg p-6 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#DD344C] flex items-center justify-center mr-4">
+                        <img height="32" width="32" src="https://cdn.simpleicons.org/awssecretsmanager/white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Secrets Manager</h3>
+                </div>
+                <p class="mb-4">
+                    Secure secret management using Sealed Secrets, encrypting your secrets for safe storage in Git.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-[#DD344C] text-white rounded-full text-xs">Sealed Secrets</span>
+                    <span class="px-3 py-1 bg-[#DD344C] text-white rounded-full text-xs">GitOps</span>
+                    <span class="px-3 py-1 bg-[#DD344C] text-white rounded-full text-xs">Encryption</span>
+                </div>
+            </div>
+
+            <!-- ECR Card -->
+            <div class="service-card rounded-xl shadow-lg p-6 transition-all duration-300">
+                <div class="flex items-center mb-4">
+                    <div class="w-12 h-12 rounded-lg bg-[#FF9900] flex items-center justify-center mr-4">
+                        <img height="32" width="32" src="https://cdn.simpleicons.org/docker/white" />
+                    </div>
+                    <h3 class="text-xl font-bold text-gray-900">Container Registry (ECR)</h3>
+                </div>
+                <p class="mb-4">
+                    Private container registry using Zot, an OCI-compliant registry with support for image signing and vulnerability scanning.
+                </p>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-[#FF9900] text-white rounded-full text-xs">Zot</span>
+                    <span class="px-3 py-1 bg-[#FF9900] text-white rounded-full text-xs">OCI</span>
+                    <span class="px-3 py-1 bg-[#FF9900] text-white rounded-full text-xs">Private Registry</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Hardware Section -->
+<section class="py-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div class="md:flex md:items-center md:justify-between">
+            <div class="md:w-1/2 mb-10 md:mb-0">
+                <h2 class="text-3xl font-bold text-gray-900 mb-6">Designed for Consumer Use Hardware</h2>
+                <p class="text-xl mb-8">
+                    Optimized to run on affordable, energy-efficient hardware like Raspberry Pi and repurposed desktop computers.
+                </p>
+                <div class="grid grid-cols-2 gap-6">
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Raspberry Pi</h3>
+                        <p>
+                            ARM64 support with optimized images for Pi 4 and newer models.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">x86 Desktops</h3>
+                        <p>
+                            Leverage old hardware with multi-node clustering for HA.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Low Power</h3>
+                        <p>
+                            Designed to run 24/7 without excessive energy costs.
+                        </p>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-semibold text-gray-900 mb-2">Compact</h3>
+                        <p>
+                            Entire stack can run on a single device or scale horizontally.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <div class="md:w-1/2 flex justify-center">
+                <div class="relative w-full max-w-md">
+                    <div class="bg-gray-700 rounded-xl shadow-lg p-6">
+                        <div class="flex items-center mb-6">
+                            <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="white"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-cpu"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M5 5m0 1a1 1 0 0 1 1 -1h12a1 1 0 0 1 1 1v12a1 1 0 0 1 -1 1h-12a1 1 0 0 1 -1 -1z" /><path d="M9 9h6v6h-6z" /><path d="M3 10h2" /><path d="M3 14h2" /><path d="M10 3v2" /><path d="M14 3v2" /><path d="M21 10h-2" /><path d="M21 14h-2" /><path d="M14 21v-2" /><path d="M10 21v-2" /></svg>
+                            <h3 class="text-xl font-bold text-white ml-1">Hardware Requirements</h3>
+                        </div>
+                        <div class="space-y-4">
+                            <div>
+                                <h4 class="font-medium text-white">Minimum</h4>
+                                <p class="text-sm text-gray-300">
+                                    8GB RAM, 4-core CPU, 64GB storage (Raspberry Pi 4B) * 1
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-white">Recommended</h4>
+                                <p class="text-sm text-gray-300">
+                                    8GB RAM, 4-core CPU, 64GB+ storage (Raspberry Pi 4B) * 3
+                                </p>
+                                <p class="text-sm text-gray-300">
+                                    Any x86 Desktop (With Nvidia Graphic Cards) * 1
+                                </p>
+                            </div>
+                            <div>
+                                <h4 class="font-medium text-white">High Availability Storage</h4>
+                                <p class="text-sm text-gray-300">
+                                    3+ nodes with HDD or SSD (Longhorn)
+                                </p>
+                            </div>
+                        </div>
+                        <div class="mt-6 pt-6 border-t border-gray-600">
+                            <div class="flex items-center">
+                                <div>
+                                    <div class="flex flex-row items-center mb-2">
+                                    <svg xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-plug"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9.785 6l8.215 8.215l-2.054 2.054a5.81 5.81 0 1 1 -8.215 -8.215l2.054 -2.054z" /><path d="M4 20l3.5 -3.5" /><path d="M15 4l-3.5 3.5" /><path d="M20 9l-3.5 3.5" /></svg>
+                                    <h4 class="font-medium text-white ml-1">Power Consumption</h4>
+                                    </div>
+                                    <p class="text-sm text-gray-300">
+                                        ~5W per Raspberry Pi, ~100W per x86 node (If GPU Exist)
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<script>
+
+        // Terminal typing effect
+        const commands = [
+            "homecloud start --with-me",
+            "homecloud deploy redis",
+            "homecloud bucket create",
+            "homecloud backup rds --name homecloud-db",
+        ];
+
+        let currentCommand = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+        let typingSpeed = 100;
+
+        function typeCommand() {
+            const commandElement = document.getElementById('typed-command');
+            const fullCommand = commands[currentCommand];
+
+            if (isDeleting) {
+                commandElement.textContent = fullCommand.substring(0, charIndex - 1);
+                charIndex--;
+                typingSpeed = 50;
+            } else {
+                commandElement.textContent = fullCommand.substring(0, charIndex + 1);
+                charIndex++;
+                typingSpeed = 100;
+            }
+
+            if (!isDeleting && charIndex === fullCommand.length) {
+                isDeleting = true;
+                typingSpeed = 1500; // Pause at end of command
+            } else if (isDeleting && charIndex === 0) {
+                isDeleting = false;
+                currentCommand = (currentCommand + 1) % commands.length;
+                typingSpeed = 500; // Pause before typing next command
+            }
+
+            setTimeout(typeCommand, typingSpeed);
+        }
+
+        // Start the typing effect
+        setTimeout(typeCommand, 1000);
+    </script>
 {{ end }}

@@ -1,12 +1,12 @@
 ---
-title: "Welcome to Doks"
+title: "HomCloud | Main"
 description: ""
-lead: "Congrats on setting up a new Doks project!"
-date: 2023-09-07T16:33:54+02:00
-lastmod: 2023-09-07T16:33:54+02:00
+lead: "Make Your Own Cloud Service!"
+date: 2025-04-06T23:33:54+09:00
+lastmod: 2023-04-06T23:33:54+09:00
 draft: false
 seo:
-  title: "Welcome to Doks" # custom title (optional)
+  title: "HomeCloud | Main" # custom title (optional)
   description: "" # custom description (recommended)
   canonical: "" # custom canonical URL (optional)
   robots: "" # custom robot tags (optional)
