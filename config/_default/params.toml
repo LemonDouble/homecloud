@@ -74,7 +74,7 @@ mainSections = ["docs"]
   editPage = true # false (default) or true
   lastMod = false # false (default) or true
   repoHost = "" # GitHub (default), Gitea, GitLab, Bitbucket, or BitbucketServer
-  docsRepo = "https://github.com/LemonDouble/homecloud"
+  docsRepo = "https://github.com/LemonDouble/homecloud/blob/main"
   docsRepoBranch = "main" # main (default), master, or <branch name>
   docsRepoSubPath = "" # "" (none, default) or <sub path>
 
