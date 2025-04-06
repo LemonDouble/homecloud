@@ -1,5 +1,5 @@
 ---
-title: "HomCloud | Main"
+title: "HomeCloud | Main"
 description: ""
 lead: "Make Your Own Cloud Service!"
 date: 2025-04-06T23:33:54+09:00
