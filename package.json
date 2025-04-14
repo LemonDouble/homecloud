@@ -12,16 +12,16 @@
     "preview": "vite preview --outDir public"
   },
   "dependencies": {
-    "@thulite/doks-core": "^1.8.0",
-    "@thulite/images": "^3.3.0",
-    "@thulite/inline-svg": "^1.1.0",
+    "@tabler/icons": "^3.31.0",
+    "@thulite/doks-core": "^1.8.1",
+    "@thulite/images": "^3.3.1",
+    "@thulite/inline-svg": "^1.2.0",
     "@thulite/seo": "^2.4.1",
-    "@tabler/icons": "^3.12.0",
     "thulite": "^2.5.0"
   },
   "devDependencies": {
-    "prettier": "^3.3.3",
-    "vite": "^5.4.2"
+    "prettier": "^3.5.3",
+    "vite": "^5.4.18"
   },
   "engines": {
     "node": ">=20.11.0"
