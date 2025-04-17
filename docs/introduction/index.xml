@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Introduction on HomeCloud</title><link>/docs/introduction/</link><description>Recent content in Introduction on HomeCloud</description><generator>Hugo</generator><language>ko</language><copyright>Copyright (c) 2020-2024 Thulite</copyright><lastBuildDate>Thu, 17 Apr 2025 23:28:54 +0900</lastBuildDate><atom:link href="/docs/introduction/index.xml" rel="self" type="application/rss+xml"/><item><title>시작하며</title><link>/docs/introduction/%EC%8B%9C%EC%9E%91%ED%95%98%EB%A9%B0/</link><pubDate>Mon, 07 Apr 2025 01:28:04 +0900</pubDate><guid>/docs/introduction/%EC%8B%9C%EC%9E%91%ED%95%98%EB%A9%B0/</guid><description>&lt;div class="callout callout-tip d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3">
+ &lt;svg
+ xmlns="http://www.w3.org/2000/svg"
+ width="24"
+ height="24"
+ viewBox="0 0 24 24"
+ fill="none"
+ stroke="currentColor"
+ stroke-width="2"
+ stroke-linecap="round"
+ stroke-linejoin="round"
+ 
+ class="outline/info-circle svg-inline callout-icon me-2 mb-3" id="svg-info-circle" role="img">
+ &lt;path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+ &lt;path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+ &lt;path d="M12 9h.01" />
+ &lt;path d="M11 12h1v4h1" />
+&lt;/svg>
+ &lt;div class="callout-content">
+ &lt;div class="callout-title">
+ &lt;p>주의! 이 글은 주저리 주저리 글입니다.&lt;/p></description></item><item><title>클러스터 디자인 목표</title><link>/docs/introduction/%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0-%EB%94%94%EC%9E%90%EC%9D%B8-%EB%AA%A9%ED%91%9C/</link><pubDate>Mon, 07 Apr 2025 02:12:07 +0900</pubDate><guid>/docs/introduction/%ED%81%B4%EB%9F%AC%EC%8A%A4%ED%84%B0-%EB%94%94%EC%9E%90%EC%9D%B8-%EB%AA%A9%ED%91%9C/</guid><description>&lt;p>무엇을 시작하기 전에, 목표를 설정하는 것은 일반적으로 꽤 좋은 방법입니다.&lt;/p>
+&lt;p>따라서, 가이드를 시작하기 전에 우리 가이드의 목적에 대해 적어보려고 합니다.&lt;/p></description></item><item><title>쿠버네티스란 무엇인가요? (WIP)</title><link>/docs/introduction/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94-wip/</link><pubDate>Thu, 17 Apr 2025 23:28:54 +0900</pubDate><guid>/docs/introduction/%EC%BF%A0%EB%B2%84%EB%84%A4%ED%8B%B0%EC%8A%A4%EB%9E%80-%EB%AC%B4%EC%97%87%EC%9D%B8%EA%B0%80%EC%9A%94-wip/</guid><description>&lt;div class="callout callout-tip d-flex flex-row mt-4 mb-4 pt-4 pe-4 pb-2 ps-3">
+ &lt;svg
+ xmlns="http://www.w3.org/2000/svg"
+ width="24"
+ height="24"
+ viewBox="0 0 24 24"
+ fill="none"
+ stroke="currentColor"
+ stroke-width="2"
+ stroke-linecap="round"
+ stroke-linejoin="round"
+ 
+ class="outline/info-circle svg-inline callout-icon me-2 mb-3" id="svg-info-circle" role="img">
+ &lt;path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+ &lt;path d="M3 12a9 9 0 1 0 18 0a9 9 0 0 0 -18 0" />
+ &lt;path d="M12 9h.01" />
+ &lt;path d="M11 12h1v4h1" />
+&lt;/svg>
+ &lt;div class="callout-content">
+ &lt;div class="callout-title">
+ &lt;p>주의! 쿠버네티스에 대해 안다면 이 글은 넘기셔도 됩니다.&lt;/p></description></item></channel></rss>
